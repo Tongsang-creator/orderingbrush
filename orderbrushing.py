@@ -19,5 +19,6 @@ for i in listuserid:
     bulk_userid.append(concat_userid(i))
 
 df_brush = pd.DataFrame({"shopid": supspec.reset_index()['shopid'].unique(), "userid": bulk_userid})
+df0 = pd.DataFrame({'shopid': df['shopid'].unique(), 'userid': 0})
 res_df = pd.concat([df0[~df0.shopid.isin(df_brush.shopid)], df_brush])
 res_df.to_csv("submission.csv", index=False)
